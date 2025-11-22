@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<div class="profile-card">
+  <h2>{{ doctor.name }}</h2>
+  <p><strong>Specialty:</strong> {{ doctor.specialty }}</p>
+  <p><strong>Email:</strong> {{ doctor.email }}</p>
+  <p><strong>Phone:</strong> {{ doctor.phone }}</p>
+  <p><strong>Availability:</strong> {{ doctor.availability }}</p>
+  <p><strong>Fee:</strong> ₹{{ doctor.fee }}</p>
+  <p>{{ doctor.bio|linebreaksbr }}</p>
+
+  <hr>
+  <a href="{% url 'doctor:appointment_register' %}">Book Appointment</a>
+</div>
+{% endblock %}

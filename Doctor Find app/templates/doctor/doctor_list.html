@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>Doctors</h2>
+
+<p><a href="{% url 'doctor:doctor_add' %}">Add doctor</a></p>
+
+<div id="doctor-table">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Specialty</th>
+            <th>Phone</th>
+            <th>Availability</th>
+            <th>Fee</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for d in doctors %}
+        <tr id="doctor-row-{{ d.id }}">
+            <td><a href="{% url 'doctor:profile' d.id %}">{{ d.name }}</a></td>
+            <td>{{ d.specialty }}</td>
+            <td>{{ d.phone }}</td>
+            <td>{{ d.availability }}</td>
+            <td>₹{{ d.fee }}</td>
+            <td>
+                <a href="{% url 'doctor:doctor_edit' d.id %}">Edit</a> |
+                <button onclick="deleteDoctor({{ d.id }})">Delete (AJAX)</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

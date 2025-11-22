@@ -1,0 +1,31 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Doctor Finder</title>
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+  <script src="{% static 'js/validation.js' %}" defer></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="{% url 'doctor:home' %}">Home</a> |
+      <a href="{% url 'doctor:doctor_list' %}">Doctors</a> |
+      <a href="{% url 'doctor:contact' %}">Contact</a> |
+      {% if user.is_authenticated %}
+        Hello {{ user.username }} | <a href="{% url 'doctor:logout' %}">Logout</a>
+      {% else %}
+        <a href="{% url 'doctor:login' %}">Login</a> | <a href="{% url 'doctor:signup' %}">Sign up</a>
+      {% endif %}
+    </nav>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  <footer>
+    <small>Doctor Finder • Demo</small>
+  </footer>
+</body>
+</html>

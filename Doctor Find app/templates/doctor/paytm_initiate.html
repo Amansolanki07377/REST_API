@@ -1,0 +1,16 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <h2>Pay ₹{{ appointment.doctor.fee }} for {{ appointment.doctor.name }}</h2>
+  <p>This is a demo Paytm payment initiation page. In production you must generate the checksum server-side and POST the payment form to Paytm's transaction URL.</p>
+  <form method="POST" action="https://securegw-stage.paytm.in/theia/processTransaction">
+    <!-- Example hidden fields Paytm expects -->
+    <input type="hidden" name="MID" value="{{ paytm_mid }}">
+    <input type="hidden" name="ORDER_ID" value="{{ appointment.id }}">
+    <input type="hidden" name="TXN_AMOUNT" value="{{ appointment.doctor.fee }}">
+    <input type="hidden" name="CUST_ID" value="{{ appointment.patient_email }}">
+    <!-- Also include checksumhash (server-generated) -->
+    <button type="submit">Proceed to Paytm (Demo)</button>
+  </form>
+{% endblock %}

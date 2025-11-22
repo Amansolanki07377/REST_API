@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <h2>Confirm delete</h2>
+  <p>Are you sure you want to delete {{ doctor.name }}?</p>
+  <form method="post">{% csrf_token %}<button type="submit">Yes, delete</button></form>
+  <a href="{% url 'doctor:doctor_list' %}">Cancel</a>
+{% endblock %}

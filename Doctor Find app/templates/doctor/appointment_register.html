@@ -1,0 +1,19 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <h2>Register for appointment</h2>
+  <form id="appointment-form" method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Register & Pay</button>
+  </form>
+  <script>
+    // client-side validation using static/js/validation.js
+    document.getElementById('appointment-form').addEventListener('submit', function(e){
+      if(!validateAppointmentForm(this)){
+        e.preventDefault();
+      }
+    });
+  </script>
+{% endblock %}
